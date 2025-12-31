@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_cities",
+  "info": {
+    "displayName": "city",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "dane": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

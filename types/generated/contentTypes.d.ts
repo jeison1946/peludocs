@@ -630,6 +630,45 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
+  collectionName: 'headquarters';
+  info: {
+    displayName: 'Sedes';
+    pluralName: 'headquarters';
+    singularName: 'headquarter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.String & Schema.Attribute.Required;
+    city: Schema.Attribute.Component<'shared.city', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::headquarter.headquarter'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    veterinarian: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::veterinarian.veterinarian'
+    >;
+  };
+}
+
 export interface ApiVeterinarianVeterinarian
   extends Struct.CollectionTypeSchema {
   collectionName: 'veterinarians';
@@ -1190,6 +1229,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::headquarter.headquarter': ApiHeadquarterHeadquarter;
       'api::veterinarian.veterinarian': ApiVeterinarianVeterinarian;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
