@@ -642,10 +642,11 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
   };
   attributes: {
     address: Schema.Attribute.String & Schema.Attribute.Required;
-    city: Schema.Attribute.Component<'shared.city', true>;
+    city: Schema.Attribute.Component<'shared.city', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    days: Schema.Attribute.Component<'shared.days', true>;
     label: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

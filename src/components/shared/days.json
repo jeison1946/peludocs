@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_days",
+  "info": {
+    "displayName": "days",
+    "icon": "server"
+  },
+  "options": {},
+  "attributes": {
+    "days": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
+    },
+    "init_hour": {
+      "type": "time",
+      "required": true
+    },
+    "end_hour": {
+      "type": "time",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -37,6 +37,11 @@
     "city": {
       "type": "component",
       "component": "shared.city",
+      "repeatable": false
+    },
+    "days": {
+      "type": "component",
+      "component": "shared.days",
       "repeatable": true
     }
   }

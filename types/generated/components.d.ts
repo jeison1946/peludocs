@@ -12,6 +12,30 @@ export interface SharedCity extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedDays extends Struct.ComponentSchema {
+  collectionName: 'components_shared_days';
+  info: {
+    displayName: 'days';
+    icon: 'server';
+  };
+  attributes: {
+    days: Schema.Attribute.Enumeration<
+      [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]
+    > &
+      Schema.Attribute.Required;
+    end_hour: Schema.Attribute.Time & Schema.Attribute.Required;
+    init_hour: Schema.Attribute.Time & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -78,6 +102,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.city': SharedCity;
+      'shared.days': SharedDays;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
