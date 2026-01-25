@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "doctors",
+  "info": {
+    "singularName": "doctor",
+    "pluralName": "doctors",
+    "displayName": "Medicos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "full_name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "professional_card_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "university": {
+      "type": "string",
+      "required": true
+    },
+    "years_of_experience": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "status": {
+      "type": "enumeration",
+      "required": true,
+      "default": "registered",
+      "enum": ["registered", "approved", "suspended"]
+    },
+    "days": {
+      "type": "component",
+      "component": "shared.days",
+      "repeatable": true
+    },
+    "headquarter": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::headquarter.headquarter"
+    }
+  }
+}
