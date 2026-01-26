@@ -613,6 +613,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     days: Schema.Attribute.Component<'shared.days', true>;
+    document: Schema.Attribute.Media<'files', true>;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
