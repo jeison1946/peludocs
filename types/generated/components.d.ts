@@ -86,6 +86,18 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedServicios extends Struct.ComponentSchema {
+  collectionName: 'components_shared_servicios';
+  info: {
+    displayName: 'Servicios';
+    icon: 'heart';
+  };
+  attributes: {
+    amount: Schema.Attribute.Integer & Schema.Attribute.Required;
+    service: Schema.Attribute.Relation<'oneToOne', 'api::service.service'>;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -107,6 +119,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
+      'shared.servicios': SharedServicios;
       'shared.slider': SharedSlider;
     }
   }

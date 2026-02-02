@@ -38,11 +38,16 @@
       "required": true,
       "min": 0
     },
+    "veterinarian": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::veterinarian.veterinarian"
+    },
     "status": {
       "type": "enumeration",
       "required": true,
       "default": "registered",
-      "enum": ["registered", "approved", "suspended"]
+      "enum": ["registered", "approved", "suspended", "review"]
     },
     "days": {
       "type": "component",

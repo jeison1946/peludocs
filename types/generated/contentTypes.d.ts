@@ -634,7 +634,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     status: Schema.Attribute.Enumeration<
-      ['registered', 'approved', 'suspended']
+      ['registered', 'approved', 'suspended', 'review']
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'registered'>;
@@ -642,6 +642,10 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    veterinarian: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::veterinarian.veterinarian'
+    >;
     years_of_experience: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
@@ -710,6 +714,7 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    services: Schema.Attribute.Component<'shared.servicios', true>;
     tel: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -722,6 +727,35 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::veterinarian.veterinarian'
     >;
+  };
+}
+
+export interface ApiServiceService extends Struct.CollectionTypeSchema {
+  collectionName: 'services';
+  info: {
+    displayName: 'Servicios';
+    pluralName: 'services';
+    singularName: 'service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Servicio: Schema.Attribute.String & Schema.Attribute.Required;
+    uid: Schema.Attribute.UID<'Servicio'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1287,6 +1321,7 @@ declare module '@strapi/strapi' {
       'api::doctor.doctor': ApiDoctorDoctor;
       'api::global.global': ApiGlobalGlobal;
       'api::headquarter.headquarter': ApiHeadquarterHeadquarter;
+      'api::service.service': ApiServiceService;
       'api::veterinarian.veterinarian': ApiVeterinarianVeterinarian;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
