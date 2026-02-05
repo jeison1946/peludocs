@@ -614,10 +614,6 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     days: Schema.Attribute.Component<'shared.days', true>;
     document: Schema.Attribute.Media<'files', true>;
-    email: Schema.Attribute.Email &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    full_name: Schema.Attribute.String & Schema.Attribute.Required;
     headquarter: Schema.Attribute.Relation<
       'oneToOne',
       'api::headquarter.headquarter'
@@ -628,7 +624,6 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       'api::doctor.doctor'
     > &
       Schema.Attribute.Private;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
     professional_card_number: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -642,6 +637,10 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     veterinarian: Schema.Attribute.Relation<
       'oneToOne',
       'api::veterinarian.veterinarian'
@@ -1258,7 +1257,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1272,12 +1270,14 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    last_name: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{

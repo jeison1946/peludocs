@@ -11,19 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "full_name": {
-      "type": "string",
-      "required": true
-    },
-    "email": {
-      "type": "email",
-      "required": true,
-      "unique": true
-    },
-    "phone": {
-      "type": "string",
-      "required": true
-    },
     "professional_card_number": {
       "type": "string",
       "required": true,
@@ -47,7 +34,12 @@
       "type": "enumeration",
       "required": true,
       "default": "registered",
-      "enum": ["registered", "approved", "suspended", "review"]
+      "enum": [
+        "registered",
+        "approved",
+        "suspended",
+        "review"
+      ]
     },
     "days": {
       "type": "component",
@@ -62,7 +54,14 @@
     "document": {
       "type": "media",
       "multiple": true,
-      "allowedTypes": ["files"]
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
