@@ -43,13 +43,15 @@ export default {
     // Crear usuario
     const user = await strapi.plugin("users-permissions").service("user").add({
       username,
-      email,
+      email: email.toLowerCase(),
       password,
+      provider: "local", // 👈 ESTO ES CLAVE
       name,
       last_name,
       phone,
       role: role.id,
       confirmed: true,
+      blocked: false,
     });
 
     // Emitir JWT como Strapi
