@@ -68,12 +68,14 @@
     },
     "name": {
       "type": "string",
-      "configurable": true,
       "required": true
     },
     "last_name": {
       "type": "string",
-      "configurable": true,
+      "required": true
+    },
+    "phone": {
+      "type": "string",
       "required": true
     }
   }
