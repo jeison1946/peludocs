@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "doctor_invitations",
+  "info": {
+    "singularName": "doctor-invitation",
+    "pluralName": "doctor-invitations",
+    "displayName": "Doctor Invitations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "veterinarian": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::veterinarian.veterinarian"
+    },
+    "doctor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "headquarter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::headquarter.headquarter"
+    },
+    "message": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "required": true,
+      "default": "pending",
+      "enum": ["pending", "accepted", "rejected", "cancelled"]
+    }
+  }
+}

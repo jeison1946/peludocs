@@ -34,12 +34,7 @@
       "type": "enumeration",
       "required": true,
       "default": "registered",
-      "enum": [
-        "registered",
-        "approved",
-        "suspended",
-        "review"
-      ]
+      "enum": ["registered", "approved", "suspended", "review"]
     },
     "days": {
       "type": "component",
@@ -54,9 +49,7 @@
     "document": {
       "type": "media",
       "multiple": true,
-      "allowedTypes": [
-        "files"
-      ]
+      "allowedTypes": ["files"]
     },
     "user": {
       "type": "relation",
