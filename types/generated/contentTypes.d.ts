@@ -607,7 +607,7 @@ export interface ApiDoctorInvitationDoctorInvitation
     singularName: 'doctor-invitation';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -618,7 +618,7 @@ export interface ApiDoctorInvitationDoctorInvitation
       'plugin::users-permissions.user'
     >;
     headquarter: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToOne',
       'api::headquarter.headquarter'
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -638,7 +638,7 @@ export interface ApiDoctorInvitationDoctorInvitation
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     veterinarian: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToOne',
       'api::veterinarian.veterinarian'
     >;
   };
@@ -745,7 +745,6 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.String & Schema.Attribute.Required;
     city: Schema.Attribute.Component<'shared.city', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

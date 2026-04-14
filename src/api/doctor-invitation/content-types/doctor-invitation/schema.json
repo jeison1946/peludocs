@@ -7,13 +7,13 @@
     "displayName": "Doctor Invitations"
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "veterinarian": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::veterinarian.veterinarian"
     },
     "doctor": {
@@ -23,7 +23,7 @@
     },
     "headquarter": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::headquarter.headquarter"
     },
     "message": {
