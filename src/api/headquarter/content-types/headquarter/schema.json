@@ -43,11 +43,6 @@
       "type": "component",
       "component": "shared.days",
       "repeatable": true
-    },
-    "services": {
-      "type": "component",
-      "component": "shared.servicios",
-      "repeatable": true
     }
   }
 }

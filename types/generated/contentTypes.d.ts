@@ -760,7 +760,6 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
     location: Schema.Attribute.JSON &
       Schema.Attribute.CustomField<'plugin::location-plugin.location'>;
     publishedAt: Schema.Attribute.DateTime;
-    services: Schema.Attribute.Component<'shared.servicios', true>;
     tel: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -773,6 +772,41 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::veterinarian.veterinarian'
     >;
+  };
+}
+
+export interface ApiServiceProvidedServiceProvided
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'services_provided';
+  info: {
+    displayName: 'Servicios prestados';
+    pluralName: 'services-provided';
+    singularName: 'service-provided';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    headquarter: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::headquarter.headquarter'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service-provided.service-provided'
+    > &
+      Schema.Attribute.Private;
+    medic: Schema.Attribute.Relation<'oneToOne', 'api::doctor.doctor'>;
+    publishedAt: Schema.Attribute.DateTime;
+    service: Schema.Attribute.Relation<'oneToOne', 'api::service.service'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -797,8 +831,8 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    Servicio: Schema.Attribute.String & Schema.Attribute.Required;
-    uid: Schema.Attribute.UID<'Servicio'> & Schema.Attribute.Required;
+    service: Schema.Attribute.String & Schema.Attribute.Required;
+    uid: Schema.Attribute.UID<'service'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1371,6 +1405,7 @@ declare module '@strapi/strapi' {
       'api::doctor.doctor': ApiDoctorDoctor;
       'api::global.global': ApiGlobalGlobal;
       'api::headquarter.headquarter': ApiHeadquarterHeadquarter;
+      'api::service-provided.service-provided': ApiServiceProvidedServiceProvided;
       'api::service.service': ApiServiceService;
       'api::veterinarian.veterinarian': ApiVeterinarianVeterinarian;
       'plugin::content-releases.release': PluginContentReleasesRelease;

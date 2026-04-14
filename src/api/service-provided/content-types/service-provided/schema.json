@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services_provided",
+  "info": {
+    "singularName": "service-provided",
+    "pluralName": "services-provided",
+    "displayName": "Servicios prestados"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "medic": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::doctor.doctor"
+    },
+    "headquarter": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::headquarter.headquarter"
+    },
+    "amount": {
+      "type": "integer",
+      "required": true
+    },
+    "service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::service.service"
+    }
+  }
+}

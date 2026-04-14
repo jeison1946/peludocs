@@ -11,6 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
     "professional_card_number": {
       "type": "string",
       "required": true,
@@ -34,7 +39,12 @@
       "type": "enumeration",
       "required": true,
       "default": "registered",
-      "enum": ["registered", "approved", "suspended", "review"]
+      "enum": [
+        "registered",
+        "approved",
+        "suspended",
+        "review"
+      ]
     },
     "days": {
       "type": "component",
@@ -49,12 +59,9 @@
     "document": {
       "type": "media",
       "multiple": true,
-      "allowedTypes": ["files"]
-    },
-    "user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "allowedTypes": [
+        "files"
+      ]
     }
   }
 }
