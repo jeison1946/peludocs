@@ -34,7 +34,7 @@ export default {
 
     const role = await strapi.db
       .query("plugin::users-permissions.role")
-      .findOne({ where: { type: roleType } });
+      .findOne({ where: { name: roleType } });
 
     if (!role) {
       return ctx.throw(400, "Rol no encontrado");

@@ -1372,7 +1372,8 @@ export interface PluginUsersPermissionsUser
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
-    >;
+    > &
+      Schema.Attribute.Configurable;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
