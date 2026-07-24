@@ -11,6 +11,7 @@ export default factories.createCoreController(
         .documents("api::doctor-invitation.doctor-invitation")
         .findOne({
           documentId: id,
+          status: "published",
           populate: {
             headquarter: true,
             doctor: true,
