@@ -18,6 +18,7 @@ export default factories.createCoreController(
             veterinarian: true,
           },
         });
+
       if (!invitation) {
         return ctx.notFound("Invitación no encontrada");
       }
@@ -37,6 +38,10 @@ export default factories.createCoreController(
             user: {
               id: invitation.doctor.id,
             },
+          },
+          populate: {
+            headquarter: true,
+            veterinarian: true,
           },
         });
         // actualizar doctor

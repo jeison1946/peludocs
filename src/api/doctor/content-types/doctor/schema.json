@@ -7,7 +7,7 @@
     "displayName": "Medicos"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -35,7 +35,7 @@
       "relation": "oneToOne",
       "target": "api::veterinarian.veterinarian"
     },
-    "status": {
+    "status_register": {
       "type": "enumeration",
       "required": true,
       "default": "registered",

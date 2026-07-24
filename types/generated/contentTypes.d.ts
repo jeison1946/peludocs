@@ -607,7 +607,7 @@ export interface ApiDoctorInvitationDoctorInvitation
     singularName: 'doctor-invitation';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -652,7 +652,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     singularName: 'doctor';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -674,7 +674,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
-    status: Schema.Attribute.Enumeration<
+    status_register: Schema.Attribute.Enumeration<
       ['registered', 'approved', 'suspended', 'review']
     > &
       Schema.Attribute.Required &
@@ -742,7 +742,7 @@ export interface ApiHeadquarterHeadquarter extends Struct.CollectionTypeSchema {
     singularName: 'headquarter';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     city: Schema.Attribute.Component<'shared.city', false>;
@@ -784,7 +784,7 @@ export interface ApiServiceProvidedServiceProvided
     singularName: 'service-provided';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     amount: Schema.Attribute.Integer & Schema.Attribute.Required;
@@ -818,7 +818,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     singularName: 'service';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -848,7 +848,7 @@ export interface ApiVeterinarianVeterinarian
     singularName: 'veterinarian';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     company_name: Schema.Attribute.String & Schema.Attribute.Required;
