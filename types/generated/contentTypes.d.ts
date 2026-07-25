@@ -659,11 +659,15 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     days: Schema.Attribute.Component<'shared.days', true>;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
     document: Schema.Attribute.Media<'files', true>;
+    gender: Schema.Attribute.Enumeration<['male', 'female']> &
+      Schema.Attribute.Required;
     headquarter: Schema.Attribute.Relation<
       'oneToOne',
       'api::headquarter.headquarter'
     >;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
