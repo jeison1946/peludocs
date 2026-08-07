@@ -63,8 +63,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.role",
-      "inversedBy": "users",
-      "configurable": true
+      "inversedBy": "users"
     },
     "name": {
       "type": "string",
@@ -77,6 +76,25 @@
     "phone": {
       "type": "string",
       "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "gender": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "male",
+        "female",
+        "non_binary",
+        "other",
+        "prefer_not_to_say"
+      ]
     }
   }
 }

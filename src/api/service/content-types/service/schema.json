@@ -19,6 +19,12 @@
       "type": "uid",
       "targetField": "service",
       "required": true
+    },
+    "medico": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::doctor.doctor",
+      "inversedBy": "servicios"
     }
   }
 }

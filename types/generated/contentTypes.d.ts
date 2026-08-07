@@ -655,6 +655,10 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    availability: Schema.Attribute.Enumeration<
+      ['available', 'busy', 'offline']
+    >;
+    certificates: Schema.Attribute.Component<'shared.certificates', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -667,7 +671,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::headquarter.headquarter'
     >;
-    image: Schema.Attribute.Media<'images'>;
+    is_independent: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -678,6 +682,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
+    servicios: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
     status_register: Schema.Attribute.Enumeration<
       ['registered', 'approved', 'suspended', 'review']
     > &
@@ -834,9 +839,38 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       'api::service.service'
     > &
       Schema.Attribute.Private;
+    medico: Schema.Attribute.Relation<'manyToOne', 'api::doctor.doctor'>;
     publishedAt: Schema.Attribute.DateTime;
     service: Schema.Attribute.String & Schema.Attribute.Required;
     uid: Schema.Attribute.UID<'service'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUniversityUniversity extends Struct.CollectionTypeSchema {
+  collectionName: 'universities';
+  info: {
+    displayName: 'university';
+    pluralName: 'universities';
+    singularName: 'university';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::university.university'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1345,6 +1379,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    avatar: Schema.Attribute.Media<'images' | 'files'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1356,6 +1391,10 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    gender: Schema.Attribute.Enumeration<
+      ['male', 'female', 'non_binary', 'other', 'prefer_not_to_say']
+    > &
+      Schema.Attribute.Required;
     last_name: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1376,8 +1415,7 @@ export interface PluginUsersPermissionsUser
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
-    > &
-      Schema.Attribute.Configurable;
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1412,6 +1450,7 @@ declare module '@strapi/strapi' {
       'api::headquarter.headquarter': ApiHeadquarterHeadquarter;
       'api::service-provided.service-provided': ApiServiceProvidedServiceProvided;
       'api::service.service': ApiServiceService;
+      'api::university.university': ApiUniversityUniversity;
       'api::veterinarian.veterinarian': ApiVeterinarianVeterinarian;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

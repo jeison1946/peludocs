@@ -71,16 +71,32 @@
         "female"
       ]
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "description": {
       "type": "richtext",
       "required": true
+    },
+    "availability": {
+      "type": "enumeration",
+      "enum": [
+        "available",
+        "busy",
+        "offline"
+      ]
+    },
+    "is_independent": {
+      "type": "boolean"
+    },
+    "certificates": {
+      "type": "component",
+      "component": "shared.certificates",
+      "repeatable": true,
+      "required": false
+    },
+    "servicios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "medico"
     }
   }
 }

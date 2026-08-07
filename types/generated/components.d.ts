@@ -1,5 +1,20 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedCertificates extends Struct.ComponentSchema {
+  collectionName: 'components_shared_certificates';
+  info: {
+    displayName: 'certificates';
+    icon: 'book';
+  };
+  attributes: {
+    end_date: Schema.Attribute.Date;
+    start_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    type: Schema.Attribute.Enumeration<['education', 'certificates']> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface SharedCity extends Struct.ComponentSchema {
   collectionName: 'components_shared_cities';
   info: {
@@ -101,6 +116,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.certificates': SharedCertificates;
       'shared.city': SharedCity;
       'shared.days': SharedDays;
       'shared.media': SharedMedia;
